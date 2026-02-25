@@ -133,4 +133,4 @@ Core behavioral model, non-ideality physics, and characterization algorithms wri
 
 **Sugandh Mittal**
 Erasmus Mundus Joint Master's in Microelectronics (RADMEP)
-[linkedin.com/sugandhmittal](https://linkedin.com/sugandhmittal) · [github.com/SugandhMittal](https://github.com/SugandhMittal)
+([linkedin.com/sugandhmittal](https://www.linkedin.com/in/sugandh-m-a75b97215/)) · ([github.com/SugandhMittal](https://github.com/SugandhMittal))
