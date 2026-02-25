@@ -125,7 +125,8 @@ Clock jitter noise is computed from the instantaneous signal slope using `np.gra
 
 ## Acknowledgements
 
-Core behavioral model, non-ideality physics, and characterization algorithms written independently. Visualization script (`demo.py`) generated with AI assistance (Claude, Anthropic).
+Core behavioral model, non-ideality physics, and characterization algorithms written independently. Visualization script (`demo.py`) and test suite 
+(`test.py`) generated with AI assistance (Claude, Anthropic).
 
 ---
 
