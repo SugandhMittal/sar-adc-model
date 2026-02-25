@@ -4,6 +4,9 @@ test.py
 Unit tests for the SAR-ADC behavioral model.
 Tests each module independently to verify correct behavior.
 
+Note: This test suite was generated with AI assistance (Claude, Anthropic)
+and verified by Sugandh Mittal.
+
 Run with: python test.py
 
 Author: Sugandh Mittal
@@ -13,7 +16,7 @@ Date Modified: 25 February 2026
 import numpy as np
 import sys
 
-# ── Test counters ──────────────────────────────────────────────────────────
+# Test counters 
 passed = 0
 failed = 0
 
@@ -27,10 +30,6 @@ def check(name, condition, detail=""):
         print(f"  FAIL  {name}{' — ' + detail if detail else ''}")
         failed += 1
 
-
-# ══════════════════════════════════════════════════════════════════════════
-print("\n── adc_core.py ──────────────────────────────────────────────────")
-# ══════════════════════════════════════════════════════════════════════════
 from adc_core import SARADC
 
 adc = SARADC(n_bits=8, vref=1.0, vmin=0.0, fs=10e6)
@@ -55,7 +54,7 @@ check("Overdrive low detected",   adc.overdriven_low[0] == True)
 adc.conversion(np.array([0.5]))
 check("No overdrive in range",    adc.overdriven[0] == False)
 
-# Saturation behaviour — no clip, algorithm saturates naturally
+# Saturation behaviour (no clip, algorithm saturates naturally)
 high_code = adc.conversion(np.array([2.0]))[0]
 low_code  = adc.conversion(np.array([-1.0]))[0]
 check("Overdrive high saturates at 255",  high_code == 255)
@@ -78,9 +77,7 @@ q_error = np.abs(sig - recon)
 check("Quantization error < 1 LSB",  np.all(q_error < adc.lsb))
 
 
-# ══════════════════════════════════════════════════════════════════════════
-print("\n── nonidealities.py ─────────────────────────────────────────────")
-# ══════════════════════════════════════════════════════════════════════════
+# Non-idealities
 from nonidealities import (ThermalNoise, ClockJitter,
                            ComparatorOffset, CapacitorMismatch,
                            ReferenceNoise)
@@ -126,9 +123,7 @@ codes_rn, _, _ = rn.convert_signal(signal)
 check("ReferenceNoise output in range",    np.all((codes_rn >= 0) & (codes_rn <= 255)))
 
 
-# ══════════════════════════════════════════════════════════════════════════
-print("\n── characterize.py ──────────────────────────────────────────────")
-# ══════════════════════════════════════════════════════════════════════════
+# characterize.py 
 from characterize import (compute_fft, compute_sndr, compute_sfdr,
                           compute_enob, compute_dnl_inl)
 FS = 10e6
@@ -184,9 +179,8 @@ check("ThermalNoise degrades SNDR",    sndr_tn <= sndr + 1)
 check("CapacitorMismatch degrades SNDR", sndr_cm < sndr)
 
 
-# ══════════════════════════════════════════════════════════════════════════
-print("\n── Final Results ────────────────────────────────────────────────")
-# ══════════════════════════════════════════════════════════════════════════
+#Final Results
+
 total = passed + failed
 print(f"\n  {passed}/{total} tests passed")
 
