@@ -23,7 +23,7 @@ def compute_fft(codes, n_bits, fs=1.0, coherent=True):
     """
     Compute the normalized power spectrum of the ADC output code sequence.
 
-    For coherent sampling use rectangular window — no spectral leakage.
+    For coherent sampling use rectangular window, no spectral leakage.
     For non-coherent signals set coherent=False to apply Hanning window.
 
     :param codes: Digital output codes from the ADC
@@ -163,11 +163,11 @@ def compute_dnl_inl(adc_instance, n_samples=100000):
     :return: Tuple of (DNL in LSB, INL in LSB) for each output code
     :rtype: tuple(np.ndarray, np.ndarray)
     """
-    ramp = np.linspace(adc_instance.vmin + adc_instance.lsb * 0.5,
-                       adc_instance.vref - adc_instance.lsb * 0.5,
+    ramp = np.linspace(adc_instance.vmin,
+                       adc_instance.vref- adc_instance.lsb * 0.01,
                        n_samples)
 
-    codes = adc_instance.conversion(ramp)  # fixed: was .convert()
+    codes = adc_instance.conversion(ramp)
     n_levels = 2 ** adc_instance.n_bits
     counts = np.bincount(codes, minlength=n_levels).astype(float)
 

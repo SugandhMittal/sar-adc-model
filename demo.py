@@ -26,7 +26,7 @@ from nonidealities import (ComparatorOffset, ThermalNoise,
 from characterize import (compute_fft, compute_sndr, compute_sfdr,
                           compute_enob, compute_dnl_inl, print_summary)
 
-# ── Parameters ─────────────────────────────────────────────────────────────
+# Parameters
 N_BITS    = 8
 VREF      = 1.0
 FS        = 10e6
@@ -89,7 +89,7 @@ def plot_col(gs, col, name, r, color):
     ax1.set_xlim(0, 2 ** N_BITS)
     ax1.set_ylim(-dnl_peak * 1.5, dnl_peak * 1.5)
     ax1.set_xlabel("Output Code", fontsize=7)
-    if col == 0: ax1.set_ylabel("DNL (LSB)", fontsize=8)
+    if col == 0: ax1.set_ylabel("DNL (LSB)")
     ax1.tick_params(labelsize=7)
     ax1.grid(True, alpha=0.3)
     label_box(ax1, f"Peak={dnl_peak:.3f} LSB")
@@ -102,8 +102,8 @@ def plot_col(gs, col, name, r, color):
     ax2.axhline(0, color='black', linewidth=0.7)
     ax2.set_xlim(0, 2 ** N_BITS)
     ax2.set_ylim(-inl_peak * 1.5, inl_peak * 1.5)
-    ax2.set_xlabel("Output Code", fontsize=7)
-    if col == 0: ax2.set_ylabel("INL (LSB)", fontsize=8)
+    ax2.set_xlabel("Output Code")
+    if col == 0: ax2.set_ylabel("INL (LSB)")
     ax2.tick_params(labelsize=7)
     ax2.grid(True, alpha=0.3)
     label_box(ax2, f"Peak={inl_peak:.3f} LSB")
@@ -134,9 +134,8 @@ def main():
 
     # Plot
     fig = plt.figure(figsize=(22, 14))
-    fig.suptitle(f"SAR-ADC — {N_BITS}-bit, fs={FS/1e6:.0f}MHz, "
-                 f"fin={F_IN/1e3:.1f}kHz",
-                 fontsize=14, fontweight='bold', y=0.98)
+    fig.suptitle(f"SAR-ADC: {N_BITS}-bit, fs={FS/1e6:.0f}MHz, "
+                 f"fin={F_IN/1e3:.1f}kHz", y=0.98)
 
     gs = gridspec.GridSpec(3, len(models), figure=fig, hspace=0.5, wspace=0.35)
 
